@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LINE 登入</title>
+        <link rel="stylesheet" href="./assets/css/line_messaging.css" />
+    </head>
+    <body>
+        <header class="header">
+            <h1 class="header-title">LINE 登入測試</h1>
+        </header>
+        <main class="main" id="app">
+            <div class="container">
+                <div class="main-wrap">
+                    <div class="login-fn">
+                        <h2 class="slogan">點擊按鈕完成打卡綁定</h2>
+                        <button class="btn" id="login-btn" @click="getUser">
+                            登入我的LINE帳號
+                        </button>
+                    </div>
+                    <div class="remind">
+                        <span>&marker;</span>
+                        <span>僅供測試</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script type="module" src="assets/js/line_messaging.js"></script>
+</html>

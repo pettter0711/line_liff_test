@@ -1,0 +1,14 @@
+{
+    "liveServer.settings.port": 5501,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "prettier.tabWidth": 4,
+    "liveSassCompile.settings.formats": [
+        {
+            "format": "expanded",
+            "extensionName": ".css",
+            "savePath": "/dist/assets/css"
+        }
+    ],
+    "liveServer.settings.root": "/dist"
+}
