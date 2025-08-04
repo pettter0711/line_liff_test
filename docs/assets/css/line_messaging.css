@@ -65,7 +65,6 @@ body {
 .main {
   margin-top: 100px;
   padding: 30px;
-  height: calc(100vh - 100px);
   background-color: #effdec;
 }
 
@@ -83,15 +82,15 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  gap: 50px;
+  margin-bottom: 20px;
   padding: 30px;
-  padding-top: 100px;
   height: 100%;
   border: 1px solid #000;
   border-radius: 5px;
 }
 
 .main .main-wrap .login-fn {
-  margin-bottom: 15px;
   padding: 30px;
   text-align: center;
 }
@@ -119,9 +118,18 @@ body {
   background-color: #2d8d15;
 }
 
-.main .remind {
+.main .main-wrap .remind {
   font-size: 0.9rem;
   color: #5f5f5f;
+  text-align: center;
+}
+
+.main .result-wrap {
+  padding: 30px;
+  height: 100%;
+  border: 1px solid #000;
+  border-radius: 5px;
+  font-size: 1rem;
   text-align: center;
 }
 /*# sourceMappingURL=line_messaging.css.map */
