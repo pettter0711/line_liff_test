@@ -7,8 +7,8 @@
         {
             "format": "expanded",
             "extensionName": ".css",
-            "savePath": "/dist/assets/css"
+            "savePath": "/docs/assets/css"
         }
     ],
-    "liveServer.settings.root": "/dist"
+    "liveServer.settings.root": "/docs"
 }
