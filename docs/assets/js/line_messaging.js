@@ -1,14 +1,16 @@
-import { appScriptUrl } from "./env.js";
+import { appScriptUrl, appLiffId } from "./env.js";
 
 const options = {
     data() {
         return {
-            liffId: "LIFF ID",
+            liffId: appLiffId,
             scriptUrl: appScriptUrl,
         };
     },
     methods: {
         async getUser() {
+            const liffId = this.liffId;
+
             await liff.init({ liffId });
             if (!liff.isLoggedIn()) {
                 liff.login();
@@ -19,13 +21,21 @@ const options = {
             const profile = await liff.getProfile();
             const userId = profile.userId;
 
-            fetch(`${this.scriptUrl}?userId=${userId}`)
-                .then((res) => {
-                    return res.text();
-                })
-                .then((text) => {
-                    alert(text);
-                });
+            console.log(userId);
+
+            await fetch(this.scriptUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ userId }),
+            });
+
+            // fetch(`${this.scriptUrl}?userId=${userId}`)
+            //     .then((res) => {
+            //         return res.text();
+            //     })
+            //     .then((text) => {
+            //         alert(text);
+            //     });
         },
     },
     mounted() {
