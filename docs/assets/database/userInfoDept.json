@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "zh": "總經理",
+        "en": "general-manager",
+        "sec": false
+    },
+    {
+        "id": 2,
+        "zh": "業務部",
+        "en": "sales",
+        "sec": false
+    },
+    {
+        "id": 3,
+        "zh": "廠務部",
+        "en": "factory",
+        "sec": true
+    },
+    {
+        "id": 4,
+        "zh": "總務部",
+        "en": "affairs",
+        "sec": true
+    }
+]

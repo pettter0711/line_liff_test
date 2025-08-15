@@ -1,0 +1,78 @@
+@media screen and (max-width: 768px) {
+    .main {
+        padding: 15px;
+        padding-bottom: 0;
+
+        .form-wrap {
+            > div {
+                width: 80%;
+            }
+
+            .register-form {
+                .form-group {
+                    .popover-item {
+                        .popover-wrap {
+                            width: 75%;
+
+                            .wrap-list {
+                                grid-template-columns: repeat(2, 1fr);
+                                max-height: 300px;
+                                overflow-y: scroll;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .main {
+        .form-wrap {
+            > div {
+                width: 100%;
+            }
+
+            .register-form {
+                .form-group {
+                    gap: 8px;
+
+                    .popover-item {
+                        .popover-wrap {
+                            .wrap-list {
+                                grid-template-columns: 1fr;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .agree-check {
+                gap: 10px;
+
+                input {
+                    align-self: flex-start;
+                    margin-top: 4px;
+                }
+
+                span {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: flex-start;
+                    gap: 2px;
+                }
+            }
+
+            .fn {
+                flex-direction: column-reverse;
+
+                #clear-btn {
+                    padding: unset;
+                    font-size: 0.85rem;
+                }
+            }
+        }
+    }
+}

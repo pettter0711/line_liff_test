@@ -1,26 +1,27 @@
-@import "reset";
+@import "variable";
 
 html,
 body {
-    font-family: "Noto Sans TC", sans-serif;
+    font-family: $font-family;
     font-size: 16px;
-    background-color: #effdec;
+    background-color: $primary-color;
 }
 
 .header {
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 80px;
-    background-color: #48c629;
-    border-bottom: 1px solid #f5f5f5;
+    background-color: $accent-color;
+    box-shadow: $shadow;
 
     .header-title {
-        color: #fff;
+        color: $primary-color;
         font-size: 2rem;
         font-weight: 700;
     }
@@ -28,61 +29,271 @@ body {
 
 .main {
     margin-top: 100px;
+    margin-bottom: 10px;
     padding: 30px;
-    background-color: #effdec;
+    padding-bottom: 0;
+    background-color: $primary-color;
 
-    .main-wrap {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        gap: 50px;
-        margin-bottom: 20px;
+    .form-wrap {
+        margin-bottom: 8px;
         padding: 30px;
-        height: 100%;
-        border: 1px solid #000;
-        border-radius: 5px;
+        border-radius: $block-radius;
+        text-align: center;
+        box-shadow: $page-shadow;
 
-        .login-fn {
-            padding: 30px;
-            text-align: center;
+        > div {
+            margin: 0 auto;
+            margin-bottom: 15px;
+            width: 50%;
+        }
 
-            .slogan {
-                margin-bottom: 20px;
-                font-size: 1.5rem;
-            }
+        .form-slogan {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: $text-color;
+        }
 
-            .btn {
-                padding: 12px 30px;
-                outline: 0;
-                border: 0;
-                border-radius: 5px;
-                background-color: #48c629;
-                font-size: 1rem;
-                font-weight: 600;
-                color: #fff;
-                cursor: pointer;
-                transition: 0.3s ease-in-out;
+        .register-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+
+            .form-group {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                width: 100%;
+
+                &.hidden {
+                    display: none;
+                }
 
                 &:hover {
-                    background-color: #2d8d15;
+                    > label,
+                    .popover-title {
+                        color: $accent-color;
+                    }
+
+                    > input,
+                    .popover-result {
+                        border-color: $accent-color;
+                    }
+                }
+
+                label {
+                    width: $form-label-width;
+                    color: $text-color;
+                    font-size: 1rem;
+                    cursor: pointer;
+                    transition: 0.2s ease-in-out;
+
+                    &:hover {
+                        color: $accent-color;
+                    }
+                }
+
+                input {
+                    width: $form-input-width;
+                    padding: 8px 12px;
+                    height: 40px;
+                    outline: 0;
+                    border: 1px solid $secondary-color;
+                    border-radius: $block-radius;
+                    color: $text-color;
+                    font-size: 1rem;
+                    transition: 0.2s ease-in-out;
+
+                    &::placeholder {
+                        color: $text-support;
+                        font-size: 0.85rem;
+                    }
+
+                    &:focus {
+                        border-color: $accent-color;
+                    }
+                }
+
+                .popover-title {
+                    width: $form-label-width;
+                    color: $text-color;
+                    font-size: 1rem;
+                    cursor: pointer;
+                    transition: 0.2s ease-in-out;
+                }
+
+                .popover-result {
+                    width: $form-input-width;
+                    padding: 8px 12px;
+                    height: 40px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 5px;
+                    border: 1px solid $secondary-color;
+                    border-radius: $block-radius;
+                    color: $text-color;
+                    font-size: 1rem;
+                    cursor: pointer;
+                    transition: 0.3s ease-in-out;
+
+                    span.remark {
+                        color: $text-support;
+                        font-size: 0.85rem;
+                    }
+                }
+
+                .popover-item {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100vh;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: rgba($color: #000, $alpha: 0.4);
+                    transition: 0.3s ease-in-out;
+
+                    .popover-wrap {
+                        padding: 24px;
+                        width: 50%;
+                        border: 3px solid $accent-color;
+                        border-radius: $block-radius;
+                        background-color: $primary-color;
+
+                        .wrap-title {
+                            padding-bottom: 8px;
+                            border-bottom: 1px solid $secondary-color;
+                            color: $text-color;
+                        }
+
+                        .wrap-list {
+                            display: grid;
+                            grid-template-columns: repeat(4, 1fr);
+                            gap: 12px;
+                            margin-bottom: 20px;
+                            padding: 12px 0;
+
+                            li {
+                                width: 100%;
+
+                                > input {
+                                    display: none;
+
+                                    &:checked + label {
+                                        background-color: $accent-color;
+                                        color: $primary-color;
+                                    }
+                                }
+
+                                > label {
+                                    display: block;
+                                    padding: 5px;
+                                    width: 100%;
+                                    border-radius: $block-radius;
+                                    background-color: $secondary-color;
+                                    color: $text-color;
+                                    font-size: 1rem;
+                                    cursor: pointer;
+                                    transition: 0.2s ease-in-out;
+
+                                    &:hover {
+                                        background-color: $accent-color;
+                                        color: $primary-color;
+                                    }
+                                }
+                            }
+                        }
+
+                        .wrap-fn {
+                            text-align: right;
+
+                            .popover-btn {
+                                padding: 5px 8px;
+                                border: 1px solid $secondary-color;
+
+                                &:hover {
+                                    background-color: $secondary-color;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
 
-        .remind {
-            font-size: 0.9rem;
-            color: #5f5f5f;
-            text-align: center;
+        .agree-check {
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+
+            input {
+                width: 15px;
+                height: 15px;
+            }
+
+            label {
+                font-size: 0.9rem;
+                color: $text-color;
+                cursor: pointer;
+            }
+
+            a {
+                font-size: 0.9rem;
+                color: $accent-color;
+                text-decoration: underline;
+            }
+        }
+
+        .fn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+
+            #clear-btn {
+                color: $text-support;
+
+                &:hover {
+                    color: $text-color;
+                }
+            }
+
+            .disabled {
+                background-color: $cta-disable;
+                color: $primary-color;
+                cursor: not-allowed;
+            }
+        }
+    }
+}
+
+.footer {
+    .company-info {
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-size: 0.9rem;
+        color: $text-support;
+
+        .en {
+            font-weight: 500;
+            text-transform: uppercase;
         }
     }
 
-    .result-wrap {
-        padding: 30px;
-        height: 100%;
-        border: 1px solid #000;
-        border-radius: 5px;
-        font-size: 1rem;
+    .remind {
+        margin-top: 10px;
+        font-size: 0.9rem;
+        color: $text-support;
         text-align: center;
     }
 }
+
+@import "line_messaging_rwd";

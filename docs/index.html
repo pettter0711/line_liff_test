@@ -3,35 +3,250 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>LINE 登入</title>
+        <title>員工LINE綁定系統</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        />
         <link rel="stylesheet" href="./assets/css/line_messaging.css" />
     </head>
     <body>
         <header class="header">
-            <h1 class="header-title">LINE 登入測試</h1>
+            <h1 class="header-title">員工LINE綁定系統</h1>
         </header>
         <main class="main" id="app">
             <div class="container">
-                <div class="main-wrap">
-                    <div class="login-fn">
-                        <h2 class="slogan">點擊按鈕完成打卡綁定</h2>
-                        <button class="btn" id="login-btn" @click="getUser">
-                            登入我的LINE帳號
+                <div class="form-wrap">
+                    <h2 class="form-slogan">請輸入個人資料</h2>
+                    <div class="register-form">
+                        <div class="form-group hidden">
+                            <label for="user-id">ID:</label>
+                            <input
+                                type="text"
+                                name="user-id"
+                                id="user-id"
+                                v-model="userInfo.id"
+                                readonly
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="user-name">姓名:</label>
+                            <input
+                                type="text"
+                                name="user-name"
+                                id="user-name"
+                                v-model="userInfo.name"
+                                placeholder="必填"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <div
+                                class="popover-title"
+                                @click="popover.dept = true"
+                            >
+                                部門:
+                            </div>
+                            <div
+                                class="popover-result"
+                                @click="popover.dept = true"
+                            >
+                                <span class="remark" v-if="!userInfo.dept"
+                                    >必填</span
+                                >
+                                <span v-else>{{ userInfo.dept }}</span>
+                                <i class="fa-solid fa-caret-down"></i>
+                            </div>
+                            <div
+                                class="popover-item"
+                                v-show="popover.dept"
+                                @click.self="popover.dept = false"
+                            >
+                                <div class="popover-wrap">
+                                    <h3 class="wrap-title">所屬部門</h3>
+                                    <ul class="wrap-list">
+                                        <li v-for="item in depts">
+                                            <input
+                                                type="radio"
+                                                :id="item.en"
+                                                :value="item.zh"
+                                                :key="item.id"
+                                                v-model="userInfo.dept"
+                                                @change="deptOptionAct(item.en)"
+                                                @click="popover.dept = false"
+                                            />
+                                            <label :for="item.en"
+                                                >{{ item.zh }}</label
+                                            >
+                                        </li>
+                                    </ul>
+                                    <div class="wrap-fn">
+                                        <button
+                                            class="btn popover-btn"
+                                            @click="popover.dept = false"
+                                        >
+                                            確認
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" v-if="sections.length > 0">
+                            <div
+                                class="popover-title"
+                                @click="popover.section = true"
+                            >
+                                課別:
+                            </div>
+                            <div
+                                class="popover-result"
+                                @click="popover.section = true"
+                            >
+                                <span class="remark" v-if="!userInfo.section"
+                                    >必填</span
+                                >
+                                <span v-else>{{ userInfo.section }}</span>
+                                <i class="fa-solid fa-caret-down"></i>
+                            </div>
+                            <div
+                                class="popover-item"
+                                v-show="popover.section"
+                                @click.self="popover.section = false"
+                            >
+                                <div class="popover-wrap">
+                                    <h3 class="wrap-title">所屬課別</h3>
+                                    <ul class="wrap-list">
+                                        <li v-for="item in sections">
+                                            <input
+                                                type="radio"
+                                                :id="item.en"
+                                                :value="item.zh"
+                                                :key="item.id"
+                                                v-model="userInfo.section"
+                                                @change="sectionOptionAct(item.en)"
+                                                @click="popover.section = false"
+                                            />
+                                            <label :for="item.en"
+                                                >{{ item.zh }}</label
+                                            >
+                                        </li>
+                                    </ul>
+                                    <div class="wrap-fn">
+                                        <button
+                                            class="btn popover-btn"
+                                            @click="popover.section = false"
+                                        >
+                                            確認
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" v-if="groups.length > 0">
+                            <div
+                                class="popover-title"
+                                @click="popover.group = true"
+                            >
+                                組別:
+                            </div>
+                            <div
+                                class="popover-result"
+                                @click="popover.group = true"
+                            >
+                                <span class="remark" v-if="!userInfo.group"
+                                    >必填</span
+                                >
+                                <span v-else>{{ userInfo.group }}</span>
+                                <i class="fa-solid fa-caret-down"></i>
+                            </div>
+                            <div
+                                class="popover-item"
+                                v-show="popover.group"
+                                @click.self="popover.group = false"
+                            >
+                                <div class="popover-wrap">
+                                    <h3 class="wrap-title">所屬組別</h3>
+                                    <ul class="wrap-list">
+                                        <li v-for="item in groups">
+                                            <input
+                                                type="radio"
+                                                :id="item.en"
+                                                :value="item.zh"
+                                                :key="item.id"
+                                                v-model="userInfo.group"
+                                                @click="popover.group = false"
+                                            />
+                                            <label :for="item.en"
+                                                >{{ item.zh }}</label
+                                            >
+                                        </li>
+                                    </ul>
+                                    <div class="wrap-fn">
+                                        <button
+                                            class="btn popover-btn"
+                                            @click="popover.group = false"
+                                        >
+                                            確認
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-position">職位:</label>
+                            <input
+                                type="text"
+                                name="user-position"
+                                id="user-position"
+                                v-model="userInfo.position"
+                                placeholder="必填"
+                            />
+                        </div>
+                    </div>
+                    <div class="agree-check">
+                        <input
+                            type="checkbox"
+                            name="isAgree"
+                            id="isAgree"
+                            v-model="isAgree"
+                        />
+                        <span>
+                            <label for="isAgree">我已詳讀並同意</label>
+                            <a href="#" class="law-link"
+                                >使用者協議&隱私權政策</a
+                            >
+                        </span>
+                    </div>
+                    <div class="fn">
+                        <button class="btn" id="clear-btn" @click="cleanForm">
+                            清除重填
+                        </button>
+                        <button
+                            class="btn cta"
+                            :class="{disabled: !isAgree}"
+                            id="login-btn"
+                            @click="uploadInfo"
+                        >
+                            完成綁定
                         </button>
                     </div>
-                    <div class="remind">
-                        <span>&marker;</span>
-                        <span>僅供測試</span>
-                    </div>
-                </div>
-                <div class="result-wrap">
-                    <div class="status-content">初始化狀態: {{status }}</div>
-                    <div class="user-id-content">你的ID: {{ userId }}</div>
                 </div>
             </div>
         </main>
+        <footer class="footer">
+            <div class="container">
+                <div class="company-info">
+                    <h4 class="zh">碩興工業股份有限公司</h4>
+                    <h4 class="en">Suction Industrial Co., Ltd.</h4>
+                </div>
+                <div class="remind">
+                    <span>&marker;</span>
+                    <span>僅供測試</span>
+                </div>
+            </div>
+        </footer>
     </body>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script type="module" src="assets/js/line_messaging.js"></script>
 </html>

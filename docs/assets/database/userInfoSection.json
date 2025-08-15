@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "zh": "生管課",
+        "en": "production",
+        "group": true
+    },
+    {
+        "id": 2,
+        "zh": "採購課",
+        "en": "purchase",
+        "group": false
+    },
+    {
+        "id": 3,
+        "zh": "品管課",
+        "en": "qc",
+        "group": false
+    },
+    {
+        "id": 4,
+        "zh": "加工課",
+        "en": "process",
+        "group": false
+    },
+    {
+        "id": 5,
+        "zh": "物料課",
+        "en": "material",
+        "group": false
+    },
+    {
+        "id": 6,
+        "zh": "會計課",
+        "en": "account",
+        "group": false
+    },
+    {
+        "id": 7,
+        "zh": "總務",
+        "en": "affairs-sec",
+        "group": false
+    }
+]

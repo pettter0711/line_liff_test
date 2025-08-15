@@ -1,0 +1,45 @@
+@import "reset";
+
+$font-family: "Noto Sans TC", sans-serif;
+
+$primary-color: #fdfdfd;
+$secondary-color: #e3e3e3;
+$accent-color: #bb1b21;
+$text-color: #1a1a1a;
+$text-support: #8d8b8b;
+
+$shadow: 0 5px 4px 0 rgba(46, 46, 46, 0.1);
+$page-shadow: 0 0 8px 1px rgba(46, 46, 46, 0.15);
+
+$block-radius: 6px;
+
+$cta-bg: $accent-color;
+$cta-hover: #911317;
+$cta-disable: #dedede;
+
+$form-label-width: 48px;
+$form-input-width: calc(100% - 48px);
+
+.btn {
+    padding: 10px 24px;
+    outline: 0;
+    border: 0;
+    border-radius: $block-radius;
+    background-color: transparent;
+    font-size: 1rem;
+    font-weight: 500;
+    color: $text-color;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+
+    &.cta {
+        background-color: $cta-bg;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: $primary-color;
+
+        &:hover {
+            background-color: $cta-hover;
+        }
+    }
+}
