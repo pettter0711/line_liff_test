@@ -39,6 +39,7 @@ const options = {
         async deptOptionAct(data) {
             this.groups = [];
             this.userInfo.section = "";
+            this.userInfo.position = "";
 
             // 使用 find 方法找到對應的部門資料
             const selectedDept = this.depts.find((dept) => dept.en === data);
@@ -66,6 +67,7 @@ const options = {
 
         async sectionOptionAct(data) {
             this.userInfo.group = "";
+            this.userInfo.position = "";
 
             // 使用 find 方法找到對應的課別資料
             const selectedSection = this.sections.find(

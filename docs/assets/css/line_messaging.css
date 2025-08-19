@@ -158,6 +158,7 @@ body {
 .main .form-wrap .register-form .form-group:hover > input,
 .main .form-wrap .register-form .form-group:hover .popover-result {
   border-color: #bb1b21;
+  color: #bb1b21;
 }
 
 .main .form-wrap .register-form .form-group label {
@@ -398,18 +399,23 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  gap: 8px;
+  gap: 2px;
   font-size: 0.9rem;
   color: #8d8b8b;
 }
 
 .footer .company-info .en {
+  font-size: 0.8rem;
   font-weight: 500;
   text-transform: uppercase;
 }
