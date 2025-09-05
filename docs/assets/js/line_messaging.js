@@ -186,6 +186,17 @@ const options = {
             });
 
             console.log(test);
+
+            // 登入成功後的init
+            Swal.fire({
+                title: "資料登入成功",
+                html: "",
+                icon: "success",
+                timer: 1200,
+            }).then(() => {
+                this.cleanForm();
+            });
+
             return;
 
             // 1. 表單內容okay，建立line官方帳號用的user id
