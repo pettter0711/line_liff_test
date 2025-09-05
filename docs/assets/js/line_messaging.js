@@ -172,20 +172,20 @@ const options = {
             if (!verifyForm) return;
 
             // 測試用
-            this.userInfo.id = "我是假ID";
+            // this.userInfo.id = "我是假ID";
 
-            let userForm = new FormData();
-            for (let k in this.userInfo) {
-                userForm.append(k, this.userInfo[k].trim());
-            }
+            // let userForm = new FormData();
+            // for (let k in this.userInfo) {
+            //     userForm.append(k, this.userInfo[k].trim());
+            // }
 
-            let test = {};
-            userForm.forEach((item, key) => {
-                test[key] = item;
-                console.log(key);
-            });
+            // let test = {};
+            // userForm.forEach((item, key) => {
+            //     test[key] = item;
+            //     console.log(key);
+            // });
 
-            console.log(test);
+            // console.log(test);
 
             // 登入成功後的init
             Swal.fire({
@@ -197,20 +197,18 @@ const options = {
                 this.cleanForm();
             });
 
-            return;
-
             // 1. 表單內容okay，建立line官方帳號用的user id
             await this.getUserId();
 
             // 2. 將使用者資料整理成form
-            // let userForm = new FormData();
+            let userForm = new FormData();
             for (let k in this.userInfo) {
                 userForm.append(k, this.userInfo[k].trim());
             }
 
             // 3. 傳輸給google sheet
             try {
-                const response = await fetch(this.scriptUrl, {
+                await fetch(this.scriptUrl, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" }, // JSON格式
                     body: JSON.stringify(userForm),
