@@ -1,5 +1,5 @@
 const appScriptUrl =
-    "https://script.google.com/macros/s/AKfycbwGHvNxBzCFI2EEBCbGTdpOixZDbcVOP_Ms15A_3Ep9lNG6ULgqecmn9Up02zTd4k4l/exec";
+    "https://script.google.com/macros/s/AKfycbySJFf-9phsTdE1E5YD5G2kgGLZgDnG-WomXqabYiRMvBF-jpwxa67YKs_ylECZ_BUO/exec";
 
 const appLiffId = "2007863926-YoXGL3zO";
 

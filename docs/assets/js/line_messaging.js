@@ -172,7 +172,7 @@ const options = {
             if (!verifyForm) return;
 
             // 測試用
-            // this.userInfo.id = "我是假ID";
+            this.userInfo.id = "我是假ID";
 
             // let userForm = new FormData();
             // for (let k in this.userInfo) {
@@ -187,18 +187,8 @@ const options = {
 
             // console.log(test);
 
-            // 登入成功後的init
-            Swal.fire({
-                title: "資料登入成功",
-                html: "",
-                icon: "success",
-                timer: 1200,
-            }).then(() => {
-                this.cleanForm();
-            });
-
             // 1. 表單內容okay，建立line官方帳號用的user id
-            await this.getUserId();
+            // await this.getUserId();
 
             // 2. 將使用者資料整理成form
             let userForm = new FormData();
@@ -206,13 +196,27 @@ const options = {
                 userForm.append(k, this.userInfo[k].trim());
             }
 
-            // 3. 傳輸給google sheet
+            // 3. 傳輸給google sheet - 使用表單提交方式繞過CORS
             try {
-                await fetch(this.scriptUrl, {
+                let response = await fetch(this.scriptUrl, {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" }, // JSON格式
-                    body: JSON.stringify(userForm),
+                    body: userForm,
                 });
+
+                if (response.ok) {
+                    // 登入成功後的init
+                    Swal.fire({
+                        title: "資料登入成功",
+                        html: "",
+                        icon: "success",
+                        timer: 1200,
+                    }).then(() => {
+                        this.cleanForm();
+                    });
+                    return;
+                }
+
+                throw new Error(`HTTP 錯誤: ${response.status}`);
             } catch (error) {
                 Swal.fire({
                     title: "登陸失敗!",
@@ -241,9 +245,7 @@ const options = {
         },
     },
     async mounted() {
-        console.log("mounted");
-        let deptsRoot = "./assets/database/userInfoDept.json";
-        this.depts = await getApi(deptsRoot);
+        this.depts = await getApi("./assets/database/userInfoDept.json");
     },
 };
 
